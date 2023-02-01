@@ -63,32 +63,32 @@ public class test {
                     }
                 }
             }
-            if (exists) {
-                count = 0;
+            if (!exists) {
                 found = true;
-                if (!found) {
-                    System.out.println("There is only one solution");
-                    System.out.println("Safe sequence is: " + Arrays.toString(safeSeq));
-                    return true;
-                } else {
-                    if (count == processCount) {
-                        solutionCount++;
-                        if (solutionCount == 1) {
-                            System.out.println("Solution 1: " + Arrays.toString(safeSeq));
-                        } else if (solutionCount == 2) {
-                            System.out.println("Solution 2: " + Arrays.toString(safeSeq));
-                            return true;
-                        }
-                        count = 0;
-                        work = Arrays.copyOf(available, resourceCount);
-                        finish = new boolean[processCount];
-                        safeSeq = new int[processCount];
+                if (count == processCount) {
+                    solutionCount++;
+                    if (solutionCount == 1) {
+                        System.out.println("Solution 1: " + Arrays.toString(safeSeq));
+                    } else if (solutionCount == 2) {
+                        System.out.println("Solution 2: " + Arrays.toString(safeSeq));
+                        return true;
                     }
+                    count = 0;
+                    work = Arrays.copyOf(available, resourceCount);
+                    finish = new boolean[processCount];
+                    safeSeq = new int[processCount];
                 }
+            } else {
+                count = 0;
             }
+        }
+        if (!found) {
+            System.out.println("There is only one solution");
+            System.out.println("Safe sequence is: " + Arrays.toString(safeSeq));
         }
         return true;
     }
+    
     
 
     public static void main(String[] args) throws IOException {
